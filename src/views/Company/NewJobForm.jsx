@@ -17,14 +17,14 @@ import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 
 const Form = (props) => {
-  const [jobOpening, setJobOpening] = useState({});
+  const [jobOpening, setJobOpening] = useState("");
   const [btnState, setBtnState] = useState("Next");
   const [question, setQuestion] = useState({});
   const [totalQuestions, setTotalQuestions] = useState([]);
   const [iteration, setIteration] = useState(1);
   const changeHandler = (event) => {
-    console.log(event.target.value);
-    const value = event.target.value;
+    // console.log(event.target.value);
+    // const value = event.target.value;
     setQuestion({
       ...question,
       [event.target.name]: event.target.value,
@@ -32,7 +32,7 @@ const Form = (props) => {
   };
   const nextQuestion = (event) => {
     event.preventDefault();
-    console.log(question);
+    // console.log(question);
     setTotalQuestions([...totalQuestions, question]);
     setQuestion({
       question: "",
@@ -45,17 +45,26 @@ const Form = (props) => {
       setIteration(iteration + 1);
     } else {
       setBtnState("Submit");
-      let companyId = localStorage.getItem("companyId");
-      setTotalQuestions([...totalQuestions, jobOpening, companyId]);
       console.log("counter reached 10");
-      Axios({
-        method: "post",
-        url: "http://631136d22786.ngrok.io/company/questions/",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        data: totalQuestions,
-      })
+      let questions = {
+        questions: totalQuestions,
+        jobOpening: jobOpening,
+        companyId: localStorage.getItem("companyId"),
+      };
+      console.log(questions);
+      // Axios({
+      //   method: "post",
+      //   url: "http://631136d22786.ngrok.io/company/questions/",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   question: {
+      //     questions: totalQuestions,
+      //     jobOpening: jobOpening,
+      //     companyId: localStorage.getItem("companyId"),
+      //   },
+      // })
+      Axios.post("http://631136d22786.ngrok.io/company/questions/", questions)
         .then(function (response) {
           console.log(response);
           if (response.status === 200) {
@@ -73,10 +82,10 @@ const Form = (props) => {
     setQuestion({ ...question, ["answer"]: eventKey });
   };
   const jobOpeningHandler = (event) => {
-    setJobOpening({ ...jobOpening, [event.target.name]: event.target.value });
+    setJobOpening(event.target.value);
   };
   console.log(totalQuestions);
-  console.log(question);
+  // console.log(question);
 
   return (
     <div className="content">
@@ -149,13 +158,13 @@ const Form = (props) => {
                     </Button>
                     <SplitButton
                       bsStyle="default"
-                      title="Answer"
+                      title="answer"
                       onSelect={rightAnswer}
                     >
                       <MenuItem eventKey="choice1">1</MenuItem>
                       <MenuItem eventKey="choice2">2</MenuItem>
                       <MenuItem eventKey="choice3">3</MenuItem>
-                      <MenuItem eventKey="choice4">4</MenuItem>
+                      <MenuItem eventKey="choice4" active >4</MenuItem>
                     </SplitButton>
                     <div className="clearfix" />
                   </form>
