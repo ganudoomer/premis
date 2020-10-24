@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Row, Col, SplitButton, MenuItem } from 'react-bootstrap';
 import { Card } from 'components/Card/Card.jsx';
 import { FormInputs } from 'components/FormInputs/FormInputs.jsx';
@@ -6,6 +6,7 @@ import Button from 'components/CustomButton/CustomButton.jsx';
 import Axios from 'axios';
 
 const Form = (props) => {
+	useEffect(() => {}, []);
 	const [ state, setState ] = useState();
 	const handleChange = (evt) => {
 		console.log(evt.target.value);
@@ -20,6 +21,7 @@ const Form = (props) => {
 		console.log(state);
 		const data = state;
 		localStorage.setItem('userInfo', JSON.stringify(data));
+		props.history.push('/');
 	};
 	return (
 		<div style={{ marginLeft: '50%', width: '55%', transform: 'translate(-50%)', marginTop: '20px' }}>
