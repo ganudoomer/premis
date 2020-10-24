@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Axios from "axios";
+// import { useHistory } from "react-router";
 import {
   Form,
   Col,
@@ -11,6 +13,7 @@ import {
 import "./AdminLogin.css";
 
 function AdminLogin(props) {
+  // const history = useHistory();
   const [adminCredential, setAdminCredential] = useState({});
   const changeHandler = (event) => {
     setAdminCredential({
@@ -22,6 +25,23 @@ function AdminLogin(props) {
   const adminLoginSubmit = (event) => {
     event.preventDefault();
     console.log(adminCredential);
+    Axios({
+      method: "post",
+      url: "http://631136d22786.ngrok.io/admin/login/",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: adminCredential,
+    })
+      .then(function (response) {
+        console.log(response.status);
+        if (response.status === 200) {
+          props.history.push("/admin/dashboard");
+        }
+      })
+      .catch((error) => {
+        console.error("User invalid");
+      });
   };
   return (
     <div className="adminLogin">
@@ -33,7 +53,7 @@ function AdminLogin(props) {
           <FormGroup>
             <Col smOffset={2} sm={10}>
               <Button type="submit" bsStyle="primary">
-                Gmail
+                Google
               </Button>
             </Col>
           </FormGroup>
@@ -51,7 +71,7 @@ function AdminLogin(props) {
             <Col sm={10}>
               <FormControl
                 type="text"
-                name="userName"
+                name="username"
                 onChange={changeHandler}
                 placeholder="userName"
                 required
@@ -82,9 +102,7 @@ function AdminLogin(props) {
 
           <FormGroup>
             <Col smOffset={2} sm={10}>
-              <Button type="submit">
-                Sign in
-              </Button>
+              <Button type="submit">Sign in</Button>
             </Col>
           </FormGroup>
         </Form>
