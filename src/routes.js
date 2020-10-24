@@ -6,7 +6,7 @@ const dashboardRoutes = [
 		name: 'Dashboard',
 		icon: 'pe-7s-graph',
 		component: Dashboard,
-		layout: '/admin'
+		layout: '/admin' 
 	}
 ];
 
