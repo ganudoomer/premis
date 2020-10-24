@@ -3,6 +3,7 @@ import { Grid, Row, Col, FormGroup, ControlLabel, FormControl } from 'react-boot
 import { Card } from 'components/Card/Card.jsx';
 import { FormInputs } from 'components/FormInputs/FormInputs.jsx';
 import Button from 'components/CustomButton/CustomButton.jsx';
+import Axios from 'axios';
 
 const Form = (props) => {
 	const [ state, setState ] = useState();
@@ -17,6 +18,21 @@ const Form = (props) => {
 	const onSubmitForm = (e) => {
 		e.preventDefault();
 		console.log(state);
+		const data = {
+			name: state.Company,
+			username: state.Username,
+			email: state.Email,
+			phone: state.Phone,
+			password: state.Password
+		};
+		Axios.post('http://631136d22786.ngrok.io/admin/company/', data)
+			.then((res) => {
+				console.log(res);
+				props.history.push('/admin/dashboard');
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 	return (
 		<div className="content">
