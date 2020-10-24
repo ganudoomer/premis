@@ -34,7 +34,7 @@ class Sidebar extends Component {
 						</div>
 					</a>
 					<a href="#" className="simple-text logo-normal">
-						Admin Panel
+						{!this.props.company ? 'Admin Panel' : 'Company Panel'}
 					</a>
 				</div>
 				<div className="sidebar-wrapper">

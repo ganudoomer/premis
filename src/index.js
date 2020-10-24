@@ -10,8 +10,9 @@ import "./assets/css/demo.css";
 import "./assets/css/pe-icon-7-stroke.css";
 
 import AdminLayout from "layouts/Admin.jsx";
+import CompanyLayout from "./layouts/Company.jsx";
 import AdminLogin from "../src/components/Login/AdminLogin.jsx";
-import CamapnyLogin from "../src/components/Login/CampanyLogin.jsx";
+import ComapnyLogin from "../src/components/Login/CampanyLogin.jsx";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -21,7 +22,11 @@ ReactDOM.render(
         path="/admin/dashboard"
         render={(props) => <AdminLayout {...props} />}
       />
-      <Route path="/campany" component={CamapnyLogin} />
+      <Route exact path="/company" component={ComapnyLogin} />
+      <Route
+        path="/company/dashboard"
+        render={(props) => <CompanyLayout {...props} />}
+      />
       <Redirect from="/" to="/admin" />
     </Switch>
   </BrowserRouter>,
