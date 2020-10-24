@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-
+import Form from '../views/UserProfile';
 import AdminNavbar from 'components/Navbars/AdminNavbar';
 import Footer from 'components/Footer/Footer';
 import Sidebar from 'components/Sidebar/Sidebar';
@@ -71,7 +71,10 @@ class Admin extends Component {
 				/>
 				<div id="main-panel" className="main-panel" ref="mainPanel">
 					<AdminNavbar {...this.props} brandText={this.getBrandText(this.props.location.pathname)} />
-					<Switch>{this.getRoutes(routes)}</Switch>
+					<Switch>
+						<Route path="/admin/dashboard/form" component={Form} />
+						{this.getRoutes(routes)}
+					</Switch>
 
 					<Footer />
 				</div>

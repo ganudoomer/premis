@@ -1,4 +1,5 @@
 import Dashboard from 'views/Dashboard.jsx';
+
 const dashboardRoutes = [
 	{
 		path: '/dashboard',

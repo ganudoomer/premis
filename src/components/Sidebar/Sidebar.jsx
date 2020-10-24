@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-
 import AdminNavbarLinks from '../Navbars/AdminNavbarLinks.jsx';
-
 import logo from 'assets/img/reactlogo.png';
 
 class Sidebar extends Component {
@@ -30,7 +28,14 @@ class Sidebar extends Component {
 			<div id="sidebar" className="sidebar" data-color={this.props.color} data-image={this.props.image}>
 				{this.props.hasImage ? <div className="sidebar-background" style={sidebarBackground} /> : null}
 				<div className="logo">
-					<h4>Admin</h4>
+					<a href="#" className="simple-text logo-mini">
+						<div className="logo-img">
+							<img src={logo} alt="logo_image" />
+						</div>
+					</a>
+					<a href="#" className="simple-text logo-normal">
+						Admin Panel
+					</a>
 				</div>
 				<div className="sidebar-wrapper">
 					<ul className="nav">
