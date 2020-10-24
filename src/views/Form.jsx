@@ -4,7 +4,7 @@ import { Card } from 'components/Card/Card.jsx';
 import { FormInputs } from 'components/FormInputs/FormInputs.jsx';
 import Button from 'components/CustomButton/CustomButton.jsx';
 
-const UserProfile = (props) => {
+const Form = (props) => {
 	const [ state, setState ] = useState();
 	const handleChange = (evt) => {
 		console.log(evt.target.value);
@@ -107,4 +107,4 @@ const UserProfile = (props) => {
 	);
 };
 
-export default UserProfile;
+export default Form;

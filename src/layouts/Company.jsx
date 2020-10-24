@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Form from '../views/UserProfile';
+import Form from '../views/Form';
 import AdminNavbar from 'components/Navbars/AdminNavbar';
 import Footer from 'components/Footer/Footer';
 import Sidebar from 'components/Sidebar/Sidebar';
