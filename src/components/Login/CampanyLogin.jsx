@@ -25,16 +25,17 @@ function AdminLogin(props) {
     console.log(companyCredential);
     Axios({
       method: "post",
-      url: "",
+      url: "http://631136d22786.ngrok.io/company/login/",
       headers: {
         "Content-Type": "application/json",
       },
       data: companyCredential,
     })
       .then(function (response) {
-        console.log(response.status);
+        console.log(response);
         if (response.status === 200) {
-          props.history.push("");
+          localStorage.setItem("companyId", response.data.companyId);
+          props.history.push("/company/dashboard");
         }
       })
       .catch((error) => {
@@ -69,7 +70,7 @@ function AdminLogin(props) {
             <Col sm={10}>
               <FormControl
                 type="email"
-                name="Email"
+                name="email"
                 onChange={changeHandler}
                 placeholder="Email"
                 required

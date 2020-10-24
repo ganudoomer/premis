@@ -22,7 +22,7 @@ ReactDOM.render(
         path="/admin/dashboard"
         render={(props) => <AdminLayout {...props} />}
       />
-      <Route exact path="/company" component={ComapnyLogin} />
+      <Route exact path="/company/login" component={ComapnyLogin} />
       <Route
         path="/company/dashboard"
         render={(props) => <CompanyLayout {...props} />}
