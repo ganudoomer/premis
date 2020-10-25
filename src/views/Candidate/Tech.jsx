@@ -10,6 +10,11 @@ const Form = (props) => {
 	useEffect(() => {
 		setQuestions(JSON.parse(localStorage.getItem('questions')));
 		console.log(JSON.parse(localStorage.getItem('questions')));
+		const opening = JSON.parse(localStorage.getItem('userInfo')).opening;
+		Axios.get(`http://631136d22786.ngrok.io/candidate/job-opening/${opening}/`).then((res) => {
+			console.log(res.data);
+			setQuestions(res.data);
+		});
 	}, []);
 	const [ state, setState ] = useState();
 	const [ count, setCount ] = useState(1);
@@ -48,7 +53,25 @@ const Form = (props) => {
 				console.log(option);
 			}
 			localStorage.setItem('appitudeAnswer', JSON.stringify(answer));
-			props.history.push('/candidate/tech');
+			const user = JSON.parse(localStorage.getItem('userInfo'));
+			const appitudeAnswer = JSON.parse(localStorage.getItem('appitudeAnswer'));
+			const questions = JSON.parse(localStorage.getItem('questions'));
+			const data = {
+				companyId: user.company,
+				name: user.Data.Name,
+				email: user.Data.Email,
+				phone: user.Data.Phone,
+				qualification: user.Data.qualification,
+				jobOpeningId: user.opening,
+				experience: user.Data.experience,
+				project: user.Data.project,
+				whyHireYou: user.Data.whyHireYou,
+				aptitudeQuestions: appitudeAnswer,
+				skillQuestions: answer
+			};
+			Axios.post('http://631136d22786.ngrok.io/candidate/').then((res) => {
+				console.log('yess');
+			});
 			console.log('Done');
 		} else if (count <= 10) {
 			setCount(count + 1);
@@ -83,7 +106,7 @@ const Form = (props) => {
 					<Col md={8}>
 						{questions ? (
 							<Card
-								title={`Question ${count}/${questions.length}`}
+								title={`Question ${count}/10`}
 								content={
 									<form onSubmit={onSubmitForm}>
 										<div className="question">

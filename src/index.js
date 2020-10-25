@@ -8,6 +8,7 @@ import './assets/css/demo.css';
 import './assets/css/pe-icon-7-stroke.css';
 import Candidte from './views/Candidate/Candidate';
 import CandidateApptitude from './views/Candidate/CandidateQuestion';
+import Tech from './views/Candidate/Tech';
 import AdminLayout from 'layouts/Admin.jsx';
 import CompanyLayout from './layouts/Company.jsx';
 import AdminLogin from '../src/components/Login/AdminLogin.jsx';
@@ -21,6 +22,8 @@ ReactDOM.render(
 			<Route exact path="/company/login" component={ComapnyLogin} />
 			<Route path="/company/dashboard" render={(props) => <CompanyLayout {...props} />} />
 			<Route path="/candidate/questions" render={(props) => <CandidateApptitude {...props} />} />
+			<Route path="/candidate/questions" render={(props) => <CandidateApptitude {...props} />} />
+			<Route path="/candidate/tech" render={(props) => <Tech {...props} />} />
 			<Route path="/candidate/:id" render={(props) => <Candidte {...props} />} />
 			<Redirect from="/" to="/admin" />
 		</Switch>
