@@ -55,23 +55,24 @@ const Form = (props) => {
 			localStorage.setItem('appitudeAnswer', JSON.stringify(answer));
 			const user = JSON.parse(localStorage.getItem('userInfo'));
 			const appitudeAnswer = JSON.parse(localStorage.getItem('appitudeAnswer'));
-			const questions = JSON.parse(localStorage.getItem('questions'));
+
 			const data = {
 				companyId: user.company,
-				name: user.Data.Name,
-				email: user.Data.Email,
-				phone: user.Data.Phone,
-				qualification: user.Data.qualification,
+				name: user.data.Name,
+				email: user.data.Email,
+				phone: user.data.Phone,
+				qualification: user.data.qualification,
 				jobOpeningId: user.opening,
-				experience: user.Data.experience,
-				project: user.Data.project,
-				whyHireYou: user.Data.whyHireYou,
+				experience: user.data.experience,
+				project: user.data.project,
+				whyHireYou: user.data.whyHireYou,
 				aptitudeQuestions: appitudeAnswer,
 				skillQuestions: answer
 			};
-			Axios.post('http://631136d22786.ngrok.io/candidate/').then((res) => {
-				console.log('yess');
+			Axios.post('http://631136d22786.ngrok.io/candidate/', data).then((res) => {
+				alert('Yes you have register succuessfully');
 			});
+			console.log(data);
 			console.log('Done');
 		} else if (count <= 10) {
 			setCount(count + 1);
