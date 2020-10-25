@@ -6,6 +6,7 @@ import Footer from "components/Footer/Footer";
 import Sidebar from "components/Sidebar/Sidebar";
 import Dashborad from "../views/Company/Dashboard";
 import NewJobForm from "../views/Company/NewJobForm";
+import CompanyQuestions from "../views/Company/Questions/CompanyQuestions";
 
 import routes from "routes.js";
 
@@ -88,7 +89,11 @@ class Admin extends Component {
           />
           <Switch>
             <Route exact path="/company/dashboard/" component={Dashborad} />
-            <Route  path="/company/dashboard/form" component={NewJobForm} />
+            <Route path="/company/dashboard/form" component={NewJobForm} />
+            <Route
+              path="/company/dashboard/questions"
+              component={CompanyQuestions}
+            />
           </Switch>
 
           <Footer />
